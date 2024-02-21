@@ -25,3 +25,9 @@ CREDENTIALS = true
 ```bash
 DATABASE_URL="postgresql://postgres:admin@localhost:5432/db_example?schema=test"
 ```
+
+## TODO
+
+Voir comment fonctione PM2 : penser à l'installer npm install pm2@latest -g
+
+[pm2 quick start](https://pm2.keymetrics.io/docs/usage/quick-start/)
