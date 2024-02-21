@@ -5,16 +5,13 @@
   "author": "",
   "license": "ISC",
   "scripts": {
-    "start": "npm run build && cross-env NODE_ENV=production node dist/server.js",
+    "start": "node dist/server.js",
     "dev": "cross-env NODE_ENV=development nodemon",
-    "build": "swc src -d dist --source-maps --copy-files",
+    "build": "tsc && tsc-alias",
     "lint": "eslint --ignore-path .gitignore --ext .ts src/",
     "lint:fix": "npm run lint -- --fix",
     "test": "jest --forceExit --detectOpenHandles",
     "prepare": "husky"
-  },
-  "prisma": {
-    "schema": "src/prisma/schema.prisma"
   },
   "lint-staged": {
     "*.ts": [
@@ -45,8 +42,6 @@
     "winston-daily-rotate-file": "^5.0.0"
   },
   "devDependencies": {
-    "@swc/cli": "^0.3.9",
-    "@swc/core": "^1.4.0",
     "@types/bcrypt": "^5.0.2",
     "@types/compression": "^1.7.5",
     "@types/cookie-parser": "^1.4.6",
@@ -75,6 +70,7 @@
     "supertest": "^6.3.4",
     "ts-jest": "^29.1.2",
     "ts-node": "^10.9.2",
+    "tsc-alias": "^1.8.8",
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.3.3"
   }
