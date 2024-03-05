@@ -20,8 +20,27 @@ export const ValidationMiddleware = (type: any, skipMissingProperties = false, w
         next();
       })
       .catch((errors: ValidationError[]) => {
-        const message = errors.map((error: ValidationError) => Object.values(error.constraints)).join(', ');
+        const message = formatError(errors);
         next(new HttpException(400, message));
       });
   };
 };
+
+function formatError(errors: ValidationError[]) {
+  return errors.map((error: ValidationError) => {
+    if (error.constraints) {
+      const values = Object.values(error.constraints);
+      if (values.length > 1) {
+        return values;
+      } else {
+        return values.join('');
+      }
+    } else {
+      const errors = formatError(error.children);
+      return {
+        object: error.property,
+        errors: errors,
+      };
+    }
+  });
+}

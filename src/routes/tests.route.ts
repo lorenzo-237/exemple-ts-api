@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { Routes } from '@interfaces/routes.interface';
 import { TestController } from '@controllers/tests.controller';
+import { AuthMiddleware } from '@/middlewares/auth.middleware';
 
 export class TestRoute implements Routes {
   public path = '/tests';
@@ -13,5 +14,6 @@ export class TestRoute implements Routes {
 
   private initializeRoutes() {
     this.router.get(`${this.path}`, this.test.getHelloWorld);
+    this.router.get(`${this.path}/private`, AuthMiddleware, this.test.getHelloWorld);
   }
 }
