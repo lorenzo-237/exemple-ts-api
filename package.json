@@ -5,13 +5,17 @@
   "author": "",
   "license": "ISC",
   "scripts": {
-    "start": "node dist/server.js",
+    "start": "cross-env NODE_ENV=production node dist/server.js",
     "dev": "cross-env NODE_ENV=development nodemon",
+    "test": "cross-env NODE_ENV=production nodemon",
     "build": "tsc && tsc-alias",
     "lint": "eslint --ignore-path .gitignore --ext .ts src/",
     "lint:fix": "npm run lint -- --fix",
-    "test": "jest --forceExit --detectOpenHandles",
-    "prepare": "husky"
+    "app:test": "jest --forceExit --detectOpenHandles",
+    "prepare": "husky",
+    "prisma:generate" : "npx prisma generate --schema src/prisma/schema.prisma",
+    "prisma:migrate" : "npx prisma migrate dev --schema src/prisma/schema.prisma",
+    "prisma:deploy" : "npx prisma migrate deploy --schema src/prisma/schema.prisma"
   },
   "lint-staged": {
     "*.ts": [

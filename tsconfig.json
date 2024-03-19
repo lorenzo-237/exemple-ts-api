@@ -24,6 +24,8 @@
       "@/*": ["*"],
       "@config": ["config"],
       "@controllers/*": ["controllers/*"],
+      "@constants/*": ["constants/*"],
+      "@api/*": ["api/*"],
       "@dtos/*": ["dtos/*"],
       "@exceptions/*": ["exceptions/*"],
       "@interfaces/*": ["interfaces/*"],
@@ -31,7 +33,10 @@
       "@routes/*": ["routes/*"],
       "@services/*": ["services/*"],
       "@utils/*": ["utils/*"],
-      "@mails/*": ["mails/*"]
+      "@queries/*": ["queries/*"],
+      "@params/*": ["params/*"],
+      "@ldap/*": ["ldap/*"],
+      "@sockets/*": ["sockets/*"]
     }
   },
   "include": ["src/**/*.ts", "src/**/*.json", ".env"],
