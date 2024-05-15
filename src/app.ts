@@ -12,24 +12,42 @@ import { NODE_ENV, PORT, LOG_FORMAT, ORIGIN, CREDENTIALS } from '@config';
 import { Routes } from '@interfaces/routes.interface';
 import { ErrorMiddleware } from '@middlewares/error.middleware';
 import { logger, stream } from '@utils/logger';
+import { createServer } from 'http';
+import { Server } from 'socket.io';
 
 export class App {
   public app: express.Application;
   public env: string;
   public port: string | number;
   public http: any;
+  public io: Server;
 
   constructor(routes: Routes[]) {
     this.app = express();
     this.env = NODE_ENV || 'development';
     this.port = PORT || 3000;
-    this.http = require('http').createServer(this.app);
+    this.http = createServer(this.app);
+    this.io = new Server(this.http);
 
     this.initializeMiddlewares();
     this.initializeRoutes(routes);
     this.initializeSwagger();
     this.initializeErrorHandling();
     this.initializeUploadsFolder();
+    this.initializeSocket();
+  }
+
+  private initializeSocket() {
+    this.io.on('connection', socket => {
+      console.log('a user connected');
+      socket.on('disconnect', () => {
+        console.log('user disconnected');
+      });
+
+      socket.on('error', err => {
+        console.log(err);
+      });
+    });
   }
 
   private initializeUploadsFolder() {
