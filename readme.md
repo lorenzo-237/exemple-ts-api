@@ -8,15 +8,15 @@ PORT = 3000
 
 # LOG
 LOG_FORMAT = dev
-LOG_DIR = ../logs
+LOG_DIR = "C:\Users\lorenzo\workspace\project\logs"
 
 # TOKEN
+# You can use: `openssl rand -base64 32` or `openssl rand -hex 64` to generate one
 SECRET_KEY = "test_secret"
 
 # CORS
 ORIGIN = *
 CREDENTIALS = true
-
 
 ```
 
@@ -28,6 +28,7 @@ DATABASE_URL="postgresql://postgres:admin@localhost:5432/db_example?schema=test"
 
 ## TODO
 
-Voir comment fonctione PM2 : penser à l'installer npm install pm2@latest -g
-
-[pm2 quick start](https://pm2.keymetrics.io/docs/usage/quick-start/)
+[] funny routes tests
+[] cli script
+[] testing examples
+[] PM2
