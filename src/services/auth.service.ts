@@ -28,7 +28,7 @@ export class AuthService {
 
     const user: User = {
       ...findUser,
-    }; // remove password ?
+    }; // Remove password ?
 
     return { cookie, user, token };
   }

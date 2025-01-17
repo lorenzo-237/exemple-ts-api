@@ -13,13 +13,17 @@ import { Routes } from '@interfaces/routes.interface';
 import { ErrorMiddleware } from '@middlewares/error.middleware';
 import { logger, stream } from '@utils/logger';
 import { createServer } from 'http';
-import { Server } from 'socket.io';
+import { Server, ServerOptions } from 'socket.io';
+
+type HttpType = Partial<ServerOptions> & {
+  listen: (port: string | number, callback: () => void) => void;
+};
 
 export class App {
   public app: express.Application;
   public env: string;
   public port: string | number;
-  public http: any;
+  public http: HttpType;
   public io: Server;
 
   constructor(routes: Routes[]) {

@@ -8,7 +8,7 @@ COPY . .
 
 RUN npm install
 
-RUN npx prisma generate --schema src/prisma/schema.prisma
+RUN npx prisma generate --schema prisma/schema.prisma
 
 RUN npm run build
 
@@ -22,6 +22,8 @@ ENV NODE_ENV=production
 WORKDIR /app
 
 # copier uniquement le build et les modules
+COPY --from=build /app/prisma ./prisma
+
 COPY --from=build /app/dist ./dist
 
 COPY --from=build /app/node_modules ./node_modules

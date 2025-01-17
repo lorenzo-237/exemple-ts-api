@@ -38,6 +38,7 @@ export const AuthMiddleware = async (req: RequestWithUser, res: Response, next: 
     };
 
     next();
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (error) {
     next(new HttpException(401, 'Wrong authentication token'));
   }
